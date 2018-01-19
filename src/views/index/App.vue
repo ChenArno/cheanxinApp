@@ -118,9 +118,6 @@ export default {
           this.itemClick(val);
         }, 200);
       }
-    },
-    $route(val) {
-      console.log(val);
     }
   },
   methods: {

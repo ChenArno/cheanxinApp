@@ -105,10 +105,14 @@ export default {
       this.window = {
         position: [val.latitude - 0.0005, val.longitude + 0.0028]
       };
-      if (val.chargingStatus == 1) {
+      if (val.chargingStatus == 1) {  //充电中
         this.marker.icon = require("assets/img/carsGreen.png");
-      } else if (val.alarmStatus == 0) {
+      } else if (val.alarmStatus == 0) {  //报警
         this.marker.icon = require("assets/img/cars.png");
+      } else if (val.alarmStatus == 2) { //预警
+        this.marker.icon = require("assets/img/carsYellow.png");
+      }else{
+        this.marker.icon = require("assets/img/carsWhite.png");
       }
       if (val.stopStatus == 1) {
         this.polyline.path.push(this.center);
