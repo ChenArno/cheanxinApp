@@ -1,0 +1,40 @@
+.iconImg {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-size: 100% 100%;
+  display: inline-block;
+  width: .45rem;
+  height: .45rem;
+}
+
+.img-ele-unknown {
+  background-image: url('imgIcon/ele_unknown.png');
+}
+
+.img-ele-low {
+  background-image: url('imgIcon/ele_low.png');
+}
+
+.img-ele-noraml {
+  background-image: url('imgIcon/ele_noraml.png');
+}
+
+.img-line-not {
+  background-image: url('imgIcon/line_not.png');
+}
+
+.img-line-on {
+  background-image: url('imgIcon/line_on.png');
+}
+
+.img-work-ab {
+  background-image: url('imgIcon/work_ab.png');
+}
+
+.img-work-noraml {
+  background-image: url('imgIcon/work_noraml.png');
+}
+
+.img-work-un {
+  background-image: url('imgIcon/work_un.png');
+}

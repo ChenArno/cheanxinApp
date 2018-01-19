@@ -1,0 +1,422 @@
+html,
+body {
+  height: 100%;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  font-family: "Helvetica Neue", STHeiti;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+textarea,
+input {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-appearance: none;
+  -webkit-user-select: auto;
+  /*webkit浏览器*/
+}
+
+body {
+  font-size: .32rem;
+  background-color: #ffffff;
+}
+
+a:not(.md-button):not(.md-bottom-bar-item):hover,
+a,
+a:hover {
+  text-decoration: none !important;
+}
+
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-size: .3rem;
+}
+
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-size: .3rem;
+}
+
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-size: .3rem;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-size: .3rem;
+}
+
+.vux-header {
+  border-bottom: 1px solid rgb(226, 225, 226);
+}
+
+.tj-tab.weui-tabbar:before {
+  background-color: rgb(226, 225, 226);
+  top: -1px;
+  border-top-color: transparent;
+}
+
+.tj-button {
+  padding: 16px;
+}
+
+.tj-button button {
+  border-radius: 1rem;
+}
+
+.login-form .md-input-container.md-has-password .md-toggle-password .md-icon:not(.md-icon-delete) {
+  color: #cccccc !important;
+}
+
+.tj-cont {
+  background-color: #F2F2F2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: auto;
+}
+
+.ver-input .vux-no-group-title {
+  border: 1px solid #CCCCCC;
+  border-radius: 10px;
+}
+
+.tj-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  font-size: .36rem !important;
+  color: #B3B3B3;
+  line-height: 24px;
+  text-align: center;
+}
+
+.tj-scroll {
+  position: absolute;
+  top: 47px;
+  bottom: 51px;
+  left: 0;
+  right: 0;
+  background-color: #F2F2F2;
+}
+
+.tj-menu {
+  bottom: 0;
+  overflow-y: auto;
+}
+
+.my-logout .vux-cell-bd {
+  text-align: center !important;
+}
+
+
+/*应用界面*/
+
+.apply-card>.weui-panel__hd:after {
+  border: none;
+}
+
+.apply-card .weui-panel__hd {
+  color: #333333;
+}
+
+.ms-head.vux-button-group>a.vux-button-tab-item-first {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.ms-head.vux-button-group>a.vux-button-tab-item-last {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+
+/*通讯录*/
+
+.contact-body .weui-cell_access.vux-cell-box {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.contact-search .weui-search-bar {
+  background-color: #fff;
+}
+
+.contact-search .weui-search-bar__label {
+  background-color: #F2F2F2;
+  line-height: 26px;
+}
+
+.app-bar {
+  background-color: #ffffff;
+}
+
+.tj-foot:after {
+  position: absolute;
+  bottom: 5px;
+  content: 'COPYRIGHT© 2016 CENTURY ALLRIGHT RESERVED';
+  font-size: .24rem;
+  color: #CCCCCC;
+  text-align: center;
+  width: 100%;
+}
+
+.tj-submit {
+  color: #DF4F45;
+  font-style: normal;
+}
+
+.tj-ul {
+  position: relative;
+}
+
+.tj-ul:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1px solid #D9D9D9;
+  color: #D9D9D9;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+
+.list-cell {
+  width: 100%;
+}
+
+.list-cell .md-radio {
+  margin: 0;
+  float: right;
+}
+
+.no-data-text.active {
+  font-size: .2rem;
+}
+
+.tj-popup .weui-cells {
+  font-size: .32rem;
+  color: #666666;
+}
+
+.group .weui-cells {
+  margin-top: 0;
+}
+
+.tj-input .weui-label {
+  color: #666666;
+}
+
+.tj-input .weui-cell:before {
+  border: none;
+}
+
+.tj-input .weui-cell:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid #D9D9D9;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  color: #666666;
+}
+
+.screen-check .weui-btn_default {
+  color: #999999;
+}
+
+.tj-time .vux-datetime {
+  font-size: .28rem;
+}
+
+.check-Img .vux-slider>.vux-swiper>.vux-swiper-item>a>.vux-swiper-desc {
+  height: 2em;
+  font-size: 16px;
+  padding: 4px 12px;
+}
+
+.check-text .weui-cell:before {
+  left: 0;
+}
+
+.tj-popup .weui-cells:after {
+  left: 15px;
+}
+
+.check-text .vux-x-textarea {
+  margin-top: 10px;
+}
+
+.ex-popup .vux-popover {
+  left: 0 !important;
+  width: 100%;
+  padding-bottom: .4rem;
+}
+
+.my-backImg svg {
+  max-width: none;
+}
+
+
+/*视频*/
+
+.tj-textarea textarea {
+  border: 1px solid #E6E6E6;
+  background-color: #F9F9F9;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.pop-mask .vux-popover {
+  z-index: 501 !important;
+}
+
+.mui-backdrop {
+  position: fixed;
+  z-index: 500;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .3);
+}
+
+.tj-red {
+  color: #EC4F46;
+}
+
+.tj-blue {
+  color: #6AA5FF;
+}
+
+
+/*门店共用头*/
+
+.shop-area {
+  padding: .25rem .2rem;
+  height: .99rem;
+  display: flex;
+  align-items: center;
+  color: #333333;
+  border-bottom: 1px solid #D9D9D9;
+}
+
+.shop-area .icon-mendian {
+  padding: 0 .1rem;
+}
+
+
+/*左侧红条*/
+
+.tj-alarm-left {
+  display: flex;
+  align-items: center;
+}
+
+.tj-leftI {
+  width: .06rem;
+  height: .3rem;
+  background-color: #DF4F45;
+  margin-right: .2rem;
+}
+
+
+/*详情框架*/
+
+.tj-single {
+  padding: .5rem .23rem;
+}
+
+
+/*图片浏览*/
+
+.swiper-img img {
+  width: 100%;
+  height: 100%;
+}
+
+.list-right {
+  text-align: right;
+}
+
+.tj-dialog .weui-mask {
+  z-index: 1001 !important;
+}
+
+.tj-dialog .weui-dialog {
+  background-color: transparent !important;
+  min-width: 100%;
+}
+
+.menu .oy-menu-group {
+  z-index: 499 !important;
+}
+
+.vux-header .vux-header-title {
+  font-weight: 600 !important;
+}
+
+.button-tab.vux-button-group>a {
+  color: #666666;
+  background: #F2F2F2;
+}
+
+
+/*图片轮播*/
+
+.pswp__top-bar {
+  bottom: 0 !important;
+  top: auto !important;
+}
+
+.btn-tab .vux-button-group>a.vux-button-group-current {
+  background-color: #E6E6E6;
+  color: #666666;
+}
+
+.tj-gray {
+  color: #999999;
+}
+
+.mess-head.vux-header .vux-header-right {
+  right: 0;
+  padding: 0 15px;
+}
+
+.progress .weui-progress__bar {
+  background-color: #ffffff;
+}
+
+.tj-vux-header .vux-header-title {
+  margin: 0 60px !important;
+}
+
+.pas-tab.vux-tab .vux-tab-item {
+  display: flex;
+  color: #666;
+  line-height: normal;
+  align-items: center;
+  justify-content: center;
+}
