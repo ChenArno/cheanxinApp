@@ -34,6 +34,7 @@ import { plusready, plusOpen } from "common/plus";
 import alarmList from "components/alarmList.vue";
 import { queryCarChargingList } from "api/sysVehicle";
 import { getTimeStampfunction, formatSeconds } from "utils/validate";
+import { mapGetters } from "vuex";
 export default {
   props: ["getBarHeight"],
   name: "shop",
@@ -52,6 +53,9 @@ export default {
     alarmList(val) {
       if (val.length === 0) return (this.loading = 1);
       this.loading = 0;
+    },
+    carMsg(val){
+      this.loadRefresh();
     }
   },
   methods: {
@@ -98,7 +102,8 @@ export default {
       return new Promise((resolve, reject) => {
         let data = {
           pageNumber: this.pageNumber,
-          pageSize: this.pageSize
+          pageSize: this.pageSize,
+          carId:this.carMsg.id
         };
         queryCarChargingList(data)
           .then(res => {
@@ -114,7 +119,8 @@ export default {
                   v.time = formatSeconds(v.endTime - v.beginTime);
                   v.endTime = getTimeStampfunction(v.endTime, 3);
                 }
-                v.beginTime = v.beginTime && getTimeStampfunction(v.beginTime, 3);
+                v.beginTime =
+                  v.beginTime && getTimeStampfunction(v.beginTime, 3);
                 v.endTime = v.endTime && getTimeStampfunction(v.endTime, 3);
                 return v;
               });
@@ -131,6 +137,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(["carMsg"]),
     top() {
       return parseInt(this.getBarHeight) + 47 + "px";
     }

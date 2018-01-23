@@ -19,11 +19,11 @@
     </div>
     <div class="line">
       <div class="line-title">{{$t('温度统计图')}}</div>
-      <curve-line id="line-I" :data='retTemperature'></curve-line>
+      <curve-line id="line-w" :data='retTemperature'></curve-line>
     </div>
     <div class="line">
       <div class="line-title">{{$t('角度统计图')}}</div>
-      <curve-line id="line-I" :data='retAngle'></curve-line>
+      <curve-line id="line-a" :data='retAngle'></curve-line>
     </div>
   </scroller>
 </template>
@@ -32,6 +32,7 @@ import { mapGetters } from "vuex";
 import { queryCarChargingChart } from "api/sysVehicle";
 import { getTimeStampfunction } from "utils/validate";
 import line from "./line";
+import { formatSeconds } from "utils/validate";
 export default {
   props: ["data"],
   data() {
@@ -61,20 +62,41 @@ export default {
     data(val) {
       if (val.chargingStatus == 1 && val.stopStatus == 0) {
         this.queryCarChargingChart();
-        if (val.lastChargingStartTime) {
+        if (val.lastChargingStopTime) {
           let time = val.lastChargingStopTime - val.lastChargingStartTime;
+          this.chargTime = formatSeconds(time);
+          return;
+        } else {
+          let time = new Date().getTime() - val.lastChargingStartTime;
           this.chargTime = formatSeconds(time);
           return;
         }
         this.chargTime = "00:00:00";
+        return;
       }
+      this.retAngle = {
+        xList: ["00:00"],
+        yList: [0]
+      };
+      this.retPowerAmpere = {
+        xList: ["00:00"],
+        yList: [0]
+      };
+      this.retTemperature = {
+        xList: ["00:00"],
+        yList: [0]
+      };
+      this.retPowerVbv = {
+        xList: ["00:00"],
+        yList: [0]
+      };
     }
   },
   mounted() {
     setTimeout(() => {
       this.chartData = {
         xList: ["12:00", "1:00"],
-        yList: [222, 43],
+        yList: [0, 0],
         min: 10,
         max: 23
       };

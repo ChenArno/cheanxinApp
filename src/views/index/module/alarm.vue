@@ -29,6 +29,7 @@ import alarmList from "components/alarmList.vue";
 import { plusready, plusOpen } from "common/plus";
 import { queryCarAlarmList } from "api/sysVehicle";
 import { getTimeStampfunction } from "utils/validate";
+import { mapGetters } from "vuex";
 export default {
   props: ["getBarHeight"],
   name: "shop",
@@ -47,6 +48,9 @@ export default {
     alarmList(val) {
       if (val.length === 0) return (this.loading = 1);
       this.loading = 0;
+    },
+    carMsg(val){
+      this.loadRefresh();
     }
   },
   methods: {
@@ -90,7 +94,8 @@ export default {
       return new Promise((resolve, reject) => {
         let data = {
           pageNumber: this.pageNumber,
-          pageSize: this.pageSize
+          pageSize: this.pageSize,
+          carId:this.carMsg.id
         };
         queryCarAlarmList(data)
           .then(res => {
@@ -118,6 +123,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(["carMsg"]),
     top() {
       return parseInt(this.getBarHeight) + 47 + "px";
     }

@@ -15,7 +15,7 @@
                 <div class="pop-cell">
                   <div class="pop-icon">
                     <div class="pop-box">
-                      <div class="pop-box-cell">{{carData.speed}}</div>
+                      <div class="pop-box-cell">{{carData.speed?carData.speed:0}}</div>
                       <div style="color:#666666,'font-size': 8px">km/h</div>
                       <div class="pop-box-white"></div>
                     </div>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="pop-cont-cell">
                       <div class="pop-cont-d">剩余电量</div>
-                      <div class="pop-cont-val" style="color:#DE4F45">{{carData.powerVbvRate*100}}%</div>
+                      <div class="pop-cont-val" style="color:#DE4F45">{{carData.powerVbvRat?carData.powerVbvRate*100:0}}%</div>
                     </div>
                     <div class="pop-cont-cell">
                       <div class="pop-cont-d">骑行时长</div>
@@ -68,6 +68,7 @@ import {
 } from "vux";
 import { plusready, plusOpen } from "common/plus";
 import { formatSeconds } from "utils/validate";
+import { setTimeout } from "timers";
 export default {
   props: ["getBarHeight"],
   name: "shop",
@@ -91,10 +92,17 @@ export default {
         let time = val.lastStopTime - val.lastStartTime;
         this.cycl = formatSeconds(time);
       } else {
-        let time = new Date().getTime() - val.lastStartTime;
-        this.cycl = formatSeconds(time);
+        if (val.lastStartTime) {
+          let time = new Date().getTime() - val.lastStartTime;
+          this.cycl = formatSeconds(time);
+        }else{
+          this.cycl = "00:00:00"
+        }
       }
     },
+    carMsg(val){
+      this.setTime();
+    }
     // show(val){
     //   if(!val){
     //     this.$refs.map.visible = false;
@@ -105,20 +113,24 @@ export default {
     plusready(this.plusready);
   },
   mounted() {
-    if (process.env.NODE_ENV === "production") return
-    this.route();
+    if (process.env.NODE_ENV === "production") return;
+    setTimeout(() => {
+      this.route();
+    }, 500);
   },
   methods: {
     plusready() {
       this.cw = plus.webview.currentWebview();
-      this.route();
+      setTimeout(() => {
+        this.route();
+      }, 500);
     },
     router() {
       this.$router.push({ name: "apply" });
       this.$emit("simClick", 2);
     },
     mapListen() {
-      if (this.carData.stopStatus == 0) return;
+      // if (this.carData.stopStatus == 0) return;
       this.show = true;
     },
     appqueryMonitorCarStatusList() {
@@ -127,7 +139,9 @@ export default {
           if (res.data) {
             this.carData = res.data;
             reslove(res.data);
+            return;
           }
+          this.carData = {}
         });
       });
     },

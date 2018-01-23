@@ -3,18 +3,19 @@
     <el-amap-polyline :strokeColor="polyline.strokeColor" :strokeWeight="polyline.strokeWeight" :editable="polyline.editable" :path="polyline.path" :events="polyline.events"></el-amap-polyline>
     <el-amap-marker :offset="marker.offset" :position="marker.position" :events="marker.events" :icon="marker.icon" :visible="marker.visible" vid="marker">
     </el-amap-marker>
-    <el-amap-info-window :position="window.position" :visible="visible" :isCustom="true">
+    <!-- <el-amap-info-window :position="window.position" :visible="visible" :isCustom="true" :autoMove="false">
       <div class="info" v-show="visible">
         剩余里程
         <span class="color">{{data.keepMoveMileage?data.keepMoveMileage:0}}</span>公里，已骑行
         <span class="color">{{cycl}}</span>
       </div>
-    </el-amap-info-window>
+    </el-amap-info-window> -->
   </el-amap>
 </template>
 
 <script>
 import { plusready, plusOpen } from "common/plus";
+import { fail } from "assert";
 export default {
   props: ["tjLoad", "data", "cycl"],
   data() {
@@ -23,6 +24,7 @@ export default {
       // amapManager,
       zoom: 15,
       center: [0, 0],
+      isFirst: true,
       events: {
         init: o => {
           self.$emit("loadEnd");
@@ -59,13 +61,10 @@ export default {
               // o 是高德地图定位插件实例
               o.getCurrentPosition((status, result) => {
                 if (result && result.position) {
-                  // self.lng = result.position.lng;
-                  // self.lat = result.position.lat;
-                  // if(self.center == [0,0]){
-                  //   self.center = [self.lng, self.lat];
-                  //    self.$nextTick();
-                  //   return
-                  // }
+                  self.marker.position = [
+                    result.position.lng,
+                    result.position.lat
+                  ];
                   self.$nextTick();
                 }
               });
@@ -74,11 +73,11 @@ export default {
         }
       ],
       window: {
-        position: [121.59996, 31.197646]
+        position: [0, 0]
       },
-      visible:false,
+      visible: false,
       marker: {
-        position: [120.11295, 30.34268],
+        position: [0, 0],
         offset: [-35, -72],
         events: {
           click: () => {
@@ -100,22 +99,35 @@ export default {
   methods: {
     getStop(val) {
       this.visible = true;
-      this.center = [val.latitude, val.longitude];
-      this.marker.position = this.center;
-      this.window = {
-        position: [val.latitude - 0.0005, val.longitude + 0.0028]
-      };
-      if (val.chargingStatus == 1) {  //充电中
+      if (val.chargingStatus == 1) {
+        //充电中
         this.marker.icon = require("assets/img/carsGreen.png");
-      } else if (val.alarmStatus == 0) {  //报警
+      } else if (val.alarmStatus == 0) {
+        //报警
         this.marker.icon = require("assets/img/cars.png");
-      } else if (val.alarmStatus == 2) { //预警
+      } else if (val.alarmStatus == 2) {
+        //预警
         this.marker.icon = require("assets/img/carsYellow.png");
-      }else{
+      } else {
         this.marker.icon = require("assets/img/carsWhite.png");
       }
+      if (
+        !val.longitude ||
+        val.longitude == 0 ||
+        !val.latitude ||
+        val.latitude == 0
+      )
+        return;
+      let arr = [val.longitude, val.latitude];
+      this.center = arr;
+      this.marker.position = arr;
+      this.window = {
+        position: [val.longitude - 0.0005, val.latitude + 0.0028]
+      };
+      console.log(val);
+
       if (val.stopStatus == 1) {
-        this.polyline.path.push(this.center);
+        this.polyline.path.push(arr);
       }
     }
   }

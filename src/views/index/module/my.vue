@@ -118,6 +118,7 @@ export default {
   methods: {
     plusready() {
       this.info = new Storage().getUserInfo();
+      this.IO = new PlusIo();
       let info = JSON.stringify(this.info);
       console.log(info);
       this.cw = plus.webview.currentWebview();
@@ -136,16 +137,25 @@ export default {
     },
     logout() {
       //此时更新localstronge 无法生效，需要远程执行login.html
-      sysLogout();
-      // this.plugIn.RYlogout();
+      localStorage.removeItem("_carMsg");
       new Cache();
+      sysLogout()
+        .then(res => {
+          this.openLogin();
+        })
+        .catch(err => {
+          this.openLogin();
+        });
+      // this.plugIn.RYlogout();
+    },
+    openLogin() {
       let login = plusOpen("login.html", "login.html", true, {
         module: "click"
       });
       setTimeout(() => {
         plus.nativeUI.closeWaiting();
         this.cw.close();
-      }, 1500);
+      }, 1000);
     },
     goToInfo(val) {
       if (val == "about") return;
@@ -182,16 +192,14 @@ export default {
     submit(val) {
       if (val) {
         //上传图片
-        this.IO
-          .Upload([val], uploadUserAuatar, { isFileRename: "0" })
+        this.IO.Upload([val], uploadUserAuatar, { isFileRename: "0" })
           .then(x => {
             plus.nativeUI.closeWaiting();
             this.info.avatarUrl = x.userAuatar;
             new Storage().getUserInfo(this.info);
             this.avatarUrl = x.userAuatar + "?t=" + new Date().getTime();
             this.popupShow = false;
-            this.IO
-              .removeFile(val)
+            this.IO.removeFile(val)
               .then(() => {})
               .catch(err => {
                 mui.toast(err.toString());
@@ -206,15 +214,15 @@ export default {
       this.popupShow = false;
     },
     onChange(val) {
-      if(val.length == 0 || !val[0]){
-        this.$vux.toast.text('暂未维护');
-        return
+      if (val.length == 0 || !val[0]) {
+        this.$vux.toast.text("暂未维护");
+        return;
       }
       this.setData(val[0]);
     },
     queryDistCarListByDriver() {
       queryDistCarListByDriver().then(res => {
-        if (res.data && res.data.length >0) {
+        if (res.data && res.data.length > 0) {
           this.carData = res.data;
           let arr = res.data.map(val => {
             return val.plateNumber;

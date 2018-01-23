@@ -23,7 +23,7 @@ service.interceptors.request.use(config => {
       config.headers['AccountToken'] = new Storage().getToken(); // 让每个请求携带token
     }
   } else {
-    config.headers['AccountToken'] = 'tj_session_dff93833-cdd5-4f34-b260-735b42773193';
+    config.headers['AccountToken'] = 'tj_session_d9a5ed2b-7dfa-4bfc-84bf-b6e30052ad12';
   }
   return config
 }, error => {
