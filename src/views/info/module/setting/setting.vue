@@ -5,15 +5,9 @@
       <cell :title="$t('清除缓存')" is-link @click.native="clear"></cell>
       <cell :title="$t('清除图片')" is-link @click.native="clear('img')"></cell>
     </group>
-
     <group>
-      <cell :title="$t('分享')" is-link @click.native="share"></cell>
+      <cell :title="$t('下载更新')" is-link @click.native="update"></cell>
     </group>
-
-    <group v-if="androidOrIos">
-      <cell :title="$t('检测新版本')" is-link @click.native="update"></cell>
-    </group>
-
     <group>
       <cell :title="$t('主题选择')" is-link :link="{name:'menu'}"></cell>
     </group>

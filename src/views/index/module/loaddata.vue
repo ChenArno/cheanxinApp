@@ -53,7 +53,7 @@ export default {
         xList: ["00:00"],
         yList: [0]
       },
-      chargTime: "00:00:00",
+      chargTime: "00:00",
       beginDate: "",
       endDate: ""
     };
@@ -64,14 +64,14 @@ export default {
         this.queryCarChargingChart();
         if (val.lastChargingStopTime) {
           let time = val.lastChargingStopTime - val.lastChargingStartTime;
-          this.chargTime = formatSeconds(time);
+          this.chargTime = formatSeconds(time,1);
           return;
         } else {
           let time = new Date().getTime() - val.lastChargingStartTime;
-          this.chargTime = formatSeconds(time);
+          this.chargTime = formatSeconds(time,1);
           return;
         }
-        this.chargTime = "00:00:00";
+        this.chargTime = "00:00";
         return;
       }
       this.retAngle = {

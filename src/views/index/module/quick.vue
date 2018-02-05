@@ -83,20 +83,20 @@ export default {
       tjLoad: false,
       show: false,
       carData: {},
-      cycl: "00:00:00"
+      cycl: "00:00"
     };
   },
   watch: {
     carData(val) {
       if (val.lastStopTime) {
         let time = val.lastStopTime - val.lastStartTime;
-        this.cycl = formatSeconds(time);
+        this.cycl = formatSeconds(time,1);
       } else {
         if (val.lastStartTime) {
           let time = new Date().getTime() - val.lastStartTime;
-          this.cycl = formatSeconds(time);
+          this.cycl = formatSeconds(time,1);
         }else{
-          this.cycl = "00:00:00"
+          this.cycl = "00:00"
         }
       }
     },

@@ -3,7 +3,7 @@
     <x-header :left-options="{backText: ''}">{{ $t('重置密码') }}
       <i slot="right" class="tj-red" @click="submit">{{ $t('完成') }}</i>
     </x-header>
-    <div class="resetPd">{{ $t('密码可用于登录天机手机版和电脑版（需6~20位）') }}</div>
+    <div class="resetPd">{{ $t('密码可用于登录手机版和电脑版（需6~20位）') }}</div>
     <group>
       <x-input :placeholder="$t('请输入原密码')" type="password" v-model="pass" :max="20">
         <i slot="label" class="tj-icon iconfont icon-icon-test"></i>

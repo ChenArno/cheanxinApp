@@ -123,7 +123,7 @@ export function shorten(str, num) {
   return newstr
 }
 
-export function formatSeconds(value) {
+export function formatSeconds(value, type) {
   value = value / 1000;
   let theTime = parseInt(value); // 秒
   let theTime1 = 0; // 分
@@ -138,7 +138,8 @@ export function formatSeconds(value) {
       theTime1 = parseInt(theTime1 % 60);
     }
   }
-  let result = "" + parseInt(theTime) + "秒";
+  // let result = "" + parseInt(theTime) + "秒";
+  let result = type ? "" : "" + parseInt(theTime) + "秒";
   if (theTime1 > 0) {
     result = "" + parseInt(theTime1) + "分" + result;
   }

@@ -17,8 +17,8 @@
               <span>{{item.time}}</span>
             </div>
             <div class="charg-cell">
-              充电状态
-              <span :style="{'color':item.chargingStatus==1?'#DE4F45':'#01AE94'}">{{item.chargingStatus==0?'充电中':'充电完毕'}}</span>
+              报警状态
+              <span :style="{'color':item.alarmState==0?'#DE4F45':'#01AE94'}">{{item.alarmState==1?'未报警':'报警'}}</span>
             </div>
           </div>
         </alarmList>

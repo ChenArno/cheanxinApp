@@ -23,7 +23,7 @@ export default {
     return {
       // amapManager,
       zoom: 15,
-      center: [0, 0],
+      center: [120.21287131, 30.20979508],
       isFirst: true,
       events: {
         init: o => {
@@ -61,10 +61,8 @@ export default {
               // o 是高德地图定位插件实例
               o.getCurrentPosition((status, result) => {
                 if (result && result.position) {
-                  self.marker.position = [
-                    result.position.lng,
-                    result.position.lat
-                  ];
+                  self.center = [result.position.lng,result.position.lat];
+                  self.marker.position = self.center ;
                   self.$nextTick();
                 }
               });
@@ -73,11 +71,11 @@ export default {
         }
       ],
       window: {
-        position: [0, 0]
+        position: [120.21287131, 30.20979508]
       },
       visible: false,
       marker: {
-        position: [0, 0],
+        position: [120.21287131, 30.20979508],
         offset: [-35, -72],
         events: {
           click: () => {

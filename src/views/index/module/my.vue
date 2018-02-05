@@ -90,6 +90,9 @@ export default {
         {
           title: this.$t("反馈意见"),
           id: "email"
+        }, {
+          title: this.$t('设置'),
+          id: 'setting'
         }
       ],
       popupShow: false,
